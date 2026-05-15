@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Cooling & Induction — Product Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #132040;
+    --navy-light: #1e3a6e;
+    --blue: #1d6ef5;
+    --blue-light: #4d8ef8;
+    --orange: #f05c1a;
+    --orange-light: #ff7a3d;
+    --amber: #f5a623;
+    --steel: #c8d6e8;
+    --steel-light: #e8f0fb;
+    --white: #ffffff;
+    --gray: #6b7a95;
+    --gray-light: #f0f4fa;
+    --text: #1a2640;
+    --text-light: #4a5568;
+    --pass: #16a34a;
+    --warn: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo .dot {
+    width: 8px; height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .nav-pills {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-pills a {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--steel);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .nav-pills a:hover, .nav-pills a.active {
+    background: rgba(29,110,245,0.15);
+    color: var(--blue-light);
+  }
+
+  .nav-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--gray);
+  }
+
+  .nav-progress-bar {
+    width: 100px;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .nav-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--orange));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 4rem 4rem;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(29,110,245,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,110,245,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(29,110,245,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    bottom: -100px; left: 10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(240,92,26,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--orange);
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.8rem;
+    position: relative;
+  }
+
+  .hero h1 .line-blue { color: var(--blue-light); }
+  .hero h1 .line-stroke {
+    -webkit-text-stroke: 2px rgba(255,255,255,0.3);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--steel);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 3px;
+    border: 1px solid;
+  }
+
+  .tag-blue { border-color: rgba(29,110,245,0.5); color: var(--blue-light); background: rgba(29,110,245,0.1); }
+  .tag-orange { border-color: rgba(240,92,26,0.5); color: var(--orange-light); background: rgba(240,92,26,0.1); }
+  .tag-steel { border-color: rgba(200,214,232,0.3); color: var(--steel); background: rgba(200,214,232,0.05); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2.4rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--orange); }
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .hero-divider {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue), var(--orange), transparent);
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section {
+    padding: 5rem 4rem;
+    position: relative;
+  }
+
+  .section-alt { background: var(--navy-mid); }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .module-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--orange);
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    margin-top: 8px;
+  }
+
+  .module-badge.blue {
+    background: var(--blue);
+    color: var(--white);
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .section-title .accent { color: var(--orange); }
+  .section-title .accent-blue { color: var(--blue-light); }
+
+  .section-desc {
+    font-size: 1rem;
+    color: var(--steel);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-top: 0.75rem;
+  }
+
+  /* ─── CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .card {
+    background: var(--navy);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .section-alt .card { background: var(--navy-mid); }
+  .card:hover { background: rgba(29,110,245,0.06); }
+
+  .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--steel);
+    line-height: 1.6;
+  }
+
+  .card-accent { border-left: 3px solid var(--orange); padding-left: 1.5rem; }
+  .card-accent-blue { border-left: 3px solid var(--blue); padding-left: 1.5rem; }
+
+  /* ─── TABLES ─── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .data-table th {
+    background: var(--navy-light);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--blue);
+  }
+
+  .data-table td {
+    padding: 11px 16px;
+    color: var(--steel);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .data-table tr:hover td { background: rgba(29,110,245,0.06); color: var(--white); }
+  .data-table td:first-child { color: var(--white); font-weight: 600; }
+
+  /* ─── CALLOUTS ─── */
+  .callout {
+    padding: 1.5rem 1.75rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    border-left: 4px solid;
+  }
+
+  .callout-blue {
+    background: rgba(29,110,245,0.08);
+    border-color: var(--blue);
+  }
+
+  .callout-orange {
+    background: rgba(240,92,26,0.08);
+    border-color: var(--orange);
+  }
+
+  .callout-amber {
+    background: rgba(245,166,35,0.08);
+    border-color: var(--amber);
+  }
+
+  .callout-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .callout-blue .callout-label { color: var(--blue-light); }
+  .callout-orange .callout-label { color: var(--orange-light); }
+  .callout-amber .callout-label { color: var(--amber); }
+
+  .callout p { font-size: 0.92rem; color: var(--steel); line-height: 1.65; }
+
+  /* ─── STEPS ─── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    align-items: flex-start;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--blue-light);
+    width: 36px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .step-content h4 {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .step-content p { font-size: 0.88rem; color: var(--steel); line-height: 1.55; }
+
+  /* ─── BULLET LIST ─── */
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+
+  .bullet-list li {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.92rem;
+    color: var(--steel);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .bullet-list li::before {
+    content: '▸';
+    color: var(--orange);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .bullet-list li strong { color: var(--white); }
+
+  /* ─── COMPARE TABLE ─── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .compare-header {
+    background: var(--navy-light);
+    padding: 14px 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--blue);
+  }
+
+  .compare-header.orange-header { border-color: var(--orange); }
+
+  .compare-cell {
+    padding: 12px 18px;
+    font-size: 0.88rem;
+    color: var(--steel);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    background: var(--navy);
+  }
+
+  .compare-cell.row-label {
+    color: var(--white);
+    font-weight: 600;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .section-alt .compare-cell { background: var(--navy-mid); }
+  .section-alt .compare-cell.row-label { background: rgba(255,255,255,0.03); }
+
+  /* ─── FRAMEWORK TABLE ─── */
+  .framework {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .framework-row {
+    display: grid;
+    grid-template-columns: 60px 160px 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .framework-row:last-child { border-bottom: none; }
+  .framework-row:first-child { background: var(--navy-light); }
+
+  .framework-cell {
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    color: var(--steel);
+  }
+
+  .framework-row:first-child .framework-cell {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .framework-cell.letter {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--blue-light);
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    background: rgba(29,110,245,0.05);
+  }
+
+  .framework-cell.action {
+    font-weight: 700;
+    color: var(--white);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    font-family: 'Barlow Semi Condensed', sans-serif;
+  }
+
+  /* ─── OBJECTION BOX ─── */
+  .objection-block {
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .objection-q {
+    background: rgba(240,92,26,0.12);
+    border-left: 4px solid var(--orange);
+    padding: 1rem 1.25rem;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--orange-light);
+    font-style: italic;
+  }
+
+  .objection-a {
+    background: rgba(29,110,245,0.06);
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    color: var(--steel);
+    line-height: 1.65;
+    border-left: 4px solid var(--blue);
+  }
+
+  .objection-a strong { color: var(--white); }
+
+  /* ─── QUIZ ─── */
+  .quiz-section {
+    background: var(--navy);
+    padding: 5rem 4rem;
+  }
+
+  .quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .question-block {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.3s;
+  }
+
+  .question-block.answered-correct {
+    border-color: rgba(22,163,74,0.4);
+    background: rgba(22,163,74,0.05);
+  }
+
+  .question-block.answered-wrong {
+    border-color: rgba(220,38,38,0.4);
+    background: rgba(220,38,38,0.05);
+  }
+
+  .question-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .question-text {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    color: var(--steel);
+    line-height: 1.4;
+  }
+
+  .option:hover { border-color: rgba(29,110,245,0.3); background: rgba(29,110,245,0.06); color: var(--white); }
+  .option.selected { border-color: var(--blue); background: rgba(29,110,245,0.12); color: var(--white); }
+  .option.correct { border-color: var(--pass); background: rgba(22,163,74,0.1); color: #86efac; }
+  .option.wrong { border-color: var(--warn); background: rgba(220,38,38,0.1); color: #fca5a5; }
+
+  .option-letter {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    width: 22px;
+    flex-shrink: 0;
+    color: inherit;
+    opacity: 0.7;
+  }
+
+  .feedback {
+    display: none;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .feedback.correct {
+    display: block;
+    background: rgba(22,163,74,0.1);
+    color: #86efac;
+    border-left: 3px solid var(--pass);
+  }
+
+  .feedback.wrong {
+    display: block;
+    background: rgba(220,38,38,0.08);
+    color: #fca5a5;
+    border-left: 3px solid var(--warn);
+  }
+
+  .quiz-section-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    padding: 0.5rem 0 1.25rem;
+    margin-top: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 1.25rem;
+  }
+
+  .quiz-section-header:first-child { margin-top: 0; }
+
+  .submit-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 16px 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .submit-btn:hover { background: var(--blue-light); transform: translateY(-1px); }
+  .submit-btn:disabled { background: var(--gray); cursor: not-allowed; transform: none; }
+
+  .score-display {
+    display: none;
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .score-display.show { display: block; }
+
+  .score-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .score-number.pass { color: var(--pass); }
+  .score-number.fail { color: var(--warn); }
+
+  .score-label {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--steel);
+    margin-bottom: 1rem;
+  }
+
+  .score-verdict {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .score-verdict.pass { color: var(--pass); }
+  .score-verdict.fail { color: var(--warn); }
+
+  /* ─── QUICK REFS ─── */
+  .quick-ref { padding: 5rem 4rem; background: var(--navy-mid); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+
+  .footer-brands {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* ─── TWO COL ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+  .sub-h {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sub-h::before {
+    content: '';
+    width: 3px;
+    height: 18px;
+    background: var(--orange);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .sub-h.blue::before { background: var(--blue); }
+
+  .spacer { height: 2rem; }
+  .spacer-sm { height: 1rem; }
+
+  .highlight { color: var(--amber); font-weight: 600; }
+  .text-blue { color: var(--blue-light); }
+  .text-orange { color: var(--orange-light); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-pills { display: none; }
+    .hero { padding: 80px 1.5rem 3rem; }
+    .section { padding: 3rem 1.5rem; }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .framework-row { grid-template-columns: 50px 1fr; }
+    .framework-cell.example { display: none; }
+    .quick-ref { padding: 3rem 1.5rem; }
+    footer { padding: 1.5rem; }
+    .quiz-section { padding: 3rem 1.5rem; }
+    .data-table { font-size: 0.78rem; }
+    .data-table th, .data-table td { padding: 9px 10px; }
+  }
+
+  /* anchor offset for fixed nav */
+  .section-anchor { display: block; height: 70px; margin-top: -70px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="dot"></span>
+    Performance Training
+  </div>
+  <ul class="nav-pills">
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="#radiators">Radiators</a></li>
+    <li><a href="#northern">Northern</a></li>
+    <li><a href="#intercoolers">Intercoolers</a></li>
+    <li><a href="#chargepipes">Charge Pipes</a></li>
+    <li><a href="#selling">Selling</a></li>
+    <li><a href="#quiz">Assessment</a></li>
+    <li><a href="#appendix">Reference</a></li>
+  </ul>
+  <div class="nav-progress">
+    <span id="progress-label">0% complete</span>
+    <div class="nav-progress-bar">
+      <div class="nav-progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <div class="hero-eyebrow">Product Training Program</div>
+  <h1>
+    Performance<br>
+    <span class="line-blue">Cooling &</span><br>
+    <span class="line-stroke">Induction</span>
+  </h1>
+
+  <p class="hero-sub">A complete sales and technical training guide covering Mishimoto diesel radiators, Northern Radiator stock replacements, replacement intercoolers, and AFE Power charge pipe kits.</p>
+
+  <div class="hero-tags">
+    <span class="tag tag-blue">Mishimoto</span>
+    <span class="tag tag-orange">AFE Power</span>
+    <span class="tag tag-blue">Northern Radiator</span>
+    <span class="tag tag-steel">Powerstroke · Duramax · Cummins</span>
+    <span class="tag tag-steel">7 Modules · 27-Question Assessment</span>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">7<span>M</span></div>
+      <div class="stat-label">Training Modules</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Product Lines</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">80<span>%</span></div>
+      <div class="stat-label">Pass Threshold</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">27</div>
+      <div class="stat-label">Quiz Questions</div>
+    </div>
+  </div>
+
+  <div class="hero-divider"></div>
+</section>
+
+<!-- MODULE 1: INTRO -->
+<span class="section-anchor" id="intro"></span>
+<section class="section">
+  <div class="section-header reveal">
+    <div class="module-badge blue">Module 1</div>
+    <div>
+      <div class="section-title">Brand <span class="accent-blue">Overview</span></div>
+      <p class="section-desc">Understanding the brands, their engineering philosophy, and what makes these products the right recommendation for diesel truck customers.</p>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h blue">Mishimoto</div>
+      <p style="font-size:0.92rem;color:var(--steel);line-height:1.7;margin-bottom:1rem;">Founded in 2003, Mishimoto is an industry leader in high-performance cooling system components. Their engineering philosophy centers on improving heat dissipation, flow efficiency, and thermal management using premium materials and rigorous testing.</p>
+      <ul class="bullet-list">
+        <li><strong>Performance Engineering</strong> — Dyno-tested and validated under real-world conditions</li>
+        <li><strong>Direct-Fit Design</strong> — Bolt-on installation; no cutting or drilling required</li>
+        <li><strong>Premium Materials</strong> — Aircraft-grade aluminum cores, silicone connections</li>
+        <li><strong>Lifetime Warranty</strong> — Industry-leading coverage on all core products</li>
+        <li><strong>Broad Coverage</strong> — Diesel trucks, performance cars, off-road, fleet</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-h">AFE Power</div>
+      <p style="font-size:0.92rem;color:var(--steel);line-height:1.7;margin-bottom:1rem;">Advanced Flow Engineering (AFE) has been a cornerstone of the performance induction market since 1999. Based in Corona, CA, AFE uses in-house CAD design, flow bench testing, and CNC machining for precision fitment and maximum airflow gains.</p>
+      <ul class="bullet-list">
+        <li><strong>American-Made Engineering</strong> — Designed, tested, and QC'd in the USA</li>
+        <li><strong>Flow-Bench Validated</strong> — Measurable CFM gains on every product</li>
+        <li><strong>Material Options</strong> — Stainless steel, aluminum, silicone coupler variants</li>
+        <li><strong>Full System Thinking</strong> — Designed to work as part of a complete induction system</li>
+        <li><strong>Proven Performance</strong> — Published dyno results and independent testing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-orange reveal" style="margin-top:2rem;">
+    <div class="callout-label">🔑 Key Selling Point</div>
+    <p>Both Mishimoto and AFE Power products are engineered specifically for diesel applications — they are not modified gasoline-engine products. This diesel-specific engineering translates directly into measurable, real-world performance gains for your customers.</p>
+  </div>
+</section>
+
+<!-- MODULE 2: RADIATORS -->
+<span class="section-anchor" id="radiators"></span>
+<section class="section section-alt">
+  <div class="section-header reveal">
+    <div class="module-badge">Module 2</div>
+    <div>
+      <div class="section-title">Mishimoto Diesel <span class="accent">Radiators</span></div>
+      <p class="section-desc">OEM cooling systems aren't built for the demands of towing, tuning, or hard use. Here's what Mishimoto does differently — and why it matters.</p>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h">Why OEM Radiators Fall Short</div>
+      <ul class="bullet-list">
+        <li>Plastic end tanks crack under thermal cycling and high-pressure spikes</li>
+        <li>Single-pass or minimal-pass cores limit coolant dwell time and heat transfer</li>
+        <li>Reduced core thickness optimized for cost, not thermal capacity</li>
+        <li>No design margin for tuned engines producing excess heat</li>
+        <li>No accommodation for added EGTs from towing or regen cycles</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-h blue">Mishimoto Construction Highlights</div>
+      <ul class="bullet-list">
+        <li><strong>All-Aluminum Core & End Tanks</strong> — Eliminates the plastic-to-aluminum joint (most common failure point)</li>
+        <li><strong>High-Density Tube-and-Fin Core</strong> — Up to 40% more surface area than stock</li>
+        <li><strong>Dual/Triple-Pass Flow</strong> — Extended coolant contact time for maximum heat rejection</li>
+        <li><strong>Direct-Fit OEM Compatibility</strong> — Factory mounting points, hose connections</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-blue reveal">
+    <div class="callout-label">📐 Technical Detail</div>
+    <p>Mishimoto's brazed aluminum construction eliminates the crimped plastic tank joint found on OEM radiators. This joint is the primary failure point on high-mileage diesel trucks — particularly on Duramax, Powerstroke, and Cummins platforms where coolant pressure spikes during towing can exceed OEM tank design limits.</p>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="sub-h reveal" style="color:var(--white)">Vehicle Applications & Specifications</div>
+  <div class="reveal" style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Application</th>
+          <th>Engine</th>
+          <th>Core Size</th>
+          <th>Capacity Gain</th>
+          <th>SKU</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Ford Super Duty (2017+)</td><td>6.7L Powerstroke</td><td>36" × 19" × 2.36"</td><td>+38% vs OEM</td><td>MMRAD-F2D-17</td></tr>
+        <tr><td>Ford Super Duty (2011–16)</td><td>6.7L Powerstroke</td><td>34" × 18" × 2.25"</td><td>+35% vs OEM</td><td>MMRAD-F2D-11V2</td></tr>
+        <tr><td>Ford Super Duty (2008–10)</td><td>6.4L Powerstroke</td><td>34" × 17" × 2.0"</td><td>+34% vs OEM</td><td>MMRAD-F2D-08V2</td></tr>
+        <tr><td>Ford Super Duty (2003–07)</td><td>6.0L Powerstroke</td><td>34" × 17" × 2.25"</td><td>+35% vs OEM</td><td>MMRAD-F2D-60</td></tr>
+        <tr><td>Chevy/GMC Duramax (2017–19)</td><td>6.6L L5P</td><td>36" × 20" × 2.36"</td><td>+40% vs OEM</td><td>MMRAD-DMAX-17</td></tr>
+        <tr><td>Chevy/GMC Duramax (2011–16)</td><td>6.6L LML</td><td>34" × 19" × 2.0"</td><td>+36% vs OEM</td><td>MMRAD-DMAX-11</td></tr>
+        <tr><td>Ram 6.7L Cummins (2019+)</td><td>6.7L Cummins</td><td>36" × 19" × 2.36"</td><td>+39% vs OEM</td><td>MMRAD-RAM-19</td></tr>
+        <tr><td>Ram 6.7L Cummins (2013–18)</td><td>6.7L Cummins</td><td>35" × 18" × 2.25"</td><td>+37% vs OEM</td><td>MMRAD-RAM-13</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h">Installation Overview</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">01</div><div class="step-content"><h4>Cool Down</h4><p>Allow engine to cool completely — minimum 2 hours after last operation.</p></div></div>
+        <div class="step"><div class="step-num">02</div><div class="step-content"><h4>Drain Coolant</h4><p>Drain into a clean container for proper disposal or reuse.</p></div></div>
+        <div class="step"><div class="step-num">03</div><div class="step-content"><h4>Disconnect</h4><p>Remove upper/lower hoses and transmission cooler lines.</p></div></div>
+        <div class="step"><div class="step-num">04</div><div class="step-content"><h4>Remove OEM</h4><p>Remove retaining brackets and lift out old radiator carefully.</p></div></div>
+        <div class="step"><div class="step-num">05</div><div class="step-content"><h4>Install Mishimoto</h4><p>Transfer sensors, set unit into mounts, reinstall hardware.</p></div></div>
+        <div class="step"><div class="step-num">06</div><div class="step-content"><h4>Fill & Burp</h4><p>Fill with correct diesel-spec coolant. Run engine with heater on full to purge air pockets.</p></div></div>
+        <div class="step"><div class="step-num">07</div><div class="step-content"><h4>Leak Check</h4><p>Inspect under operating temperature before returning to service.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="callout callout-orange" style="margin:0 0 1.5rem;">
+        <div class="callout-label">⚠️ Powerstroke Note</div>
+        <p>On 6.0L and 6.4L Powerstroke applications, replace the lower radiator hose and thermostat at the same time. These are common failure points that are significantly easier to access with the radiator removed.</p>
+      </div>
+      <div class="sub-h blue">Customer Benefits</div>
+      <ul class="bullet-list">
+        <li>15–25°F coolant temp reduction under tow load (typical)</li>
+        <li>Eliminates plastic tank failure — a leading cause of roadside breakdowns</li>
+        <li>Supports tuned engines that exceed OEM thermal limits</li>
+        <li>Lifetime warranty provides long-term customer confidence</li>
+        <li>No added maintenance beyond standard coolant service</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 2B: NORTHERN RADIATOR -->
+<span class="section-anchor" id="northern"></span>
+<section class="section">
+  <div class="section-header reveal">
+    <div class="module-badge blue">Module 2B</div>
+    <div>
+      <div class="section-title">Northern Radiator <span class="accent-blue">Stock Replacement Radiators</span></div>
+      <p class="section-desc">When a customer needs a reliable, cost-effective OEM-equivalent replacement rather than a performance upgrade, Northern Radiator is the trusted stock replacement solution to recommend.</p>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h">Brand Overview</div>
+      <p style="font-size:0.92rem;color:var(--steel);line-height:1.7;margin-bottom:1rem;">Northern Radiator has been manufacturing and distributing cooling system components since 1973. Based in Winona, Minnesota, Northern specializes in stock replacement radiators, heater cores, and cooling accessories for automotive, truck, agricultural, and industrial applications. Their extensive catalog and consistent OEM-spec quality make them a go-to for customers who need reliable everyday replacements without performance premiums.</p>
+      <ul class="bullet-list">
+        <li><strong>Established Heritage</strong> — Over 50 years in the cooling industry with a reputation for reliability</li>
+        <li><strong>OEM-Equivalent Quality</strong> — Built to meet or exceed original equipment specifications</li>
+        <li><strong>Broad Coverage</strong> — Extensive fitment library covering domestic, import, and light/medium-duty truck applications</li>
+        <li><strong>Competitively Priced</strong> — Positioned as a value alternative to OEM dealer pricing</li>
+        <li><strong>American Distribution</strong> — Strong domestic supply chain with reliable availability</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-h">Construction & Quality Standards</div>
+      <ul class="bullet-list">
+        <li><strong>Aluminum/Plastic Construction</strong> — OEM-matching aluminum core with engineered plastic end tanks on applicable fitments</li>
+        <li><strong>All-Aluminum Options</strong> — Select heavy-duty and truck applications feature full aluminum construction</li>
+        <li><strong>Pressure Tested</strong> — Each unit is pressure tested before shipment to verify integrity</li>
+        <li><strong>OEM Port Locations</strong> — Inlet/outlet, overflow, and sensor port locations match factory specifications exactly</li>
+        <li><strong>Transmission Cooler Integration</strong> — Automatic transmission cooler ports maintained on applicable applications</li>
+        <li><strong>Direct Fit</strong> — No modifications required; installs with OEM hardware</li>
+      </ul>
+      <div class="callout callout-blue" style="margin-top:1.25rem;">
+        <div class="callout-label">📦 Availability Note</div>
+        <p>Northern Radiator maintains one of the largest in-stock inventories in the replacement radiator category. Most common diesel truck fitments ship same day or next business day, making them a strong option when a customer needs fast turnaround on a breakdown repair.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="sub-h reveal">Mishimoto vs. Northern Radiator — Choosing the Right Recommendation</div>
+  <div class="reveal" style="overflow-x:auto;">
+    <div class="compare-grid">
+      <div class="compare-header">Factor</div>
+      <div class="compare-header">Northern Radiator</div>
+      <div class="compare-header orange-header">Mishimoto Performance</div>
+      <div class="compare-cell row-label">Customer Goal</div><div class="compare-cell">Restore to stock / budget repair</div><div class="compare-cell text-orange">Upgrade cooling performance</div>
+      <div class="compare-cell row-label">Construction</div><div class="compare-cell">Aluminum core / plastic end tanks (most fitments)</div><div class="compare-cell text-orange">All-aluminum, brazed construction</div>
+      <div class="compare-cell row-label">Cooling Capacity</div><div class="compare-cell">OEM-equivalent</div><div class="compare-cell text-orange">34–40% above OEM</div>
+      <div class="compare-cell row-label">Price Point</div><div class="compare-cell">Budget-friendly replacement</div><div class="compare-cell text-orange">Premium — upgrade pricing</div>
+      <div class="compare-cell row-label">Best Use Case</div><div class="compare-cell">Stock vehicle, budget-conscious, fleet maintenance</div><div class="compare-cell text-orange">Towing, tuned, high mileage, performance builds</div>
+      <div class="compare-cell row-label">Warranty</div><div class="compare-cell">Limited — verify by application</div><div class="compare-cell text-orange">Lifetime warranty</div>
+      <div class="compare-cell row-label">Availability</div><div class="compare-cell">Excellent — large in-stock inventory</div><div class="compare-cell text-orange">Good — verify fitment prior to order</div>
+    </div>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h">When to Recommend Northern Radiator</div>
+      <ul class="bullet-list">
+        <li>Customer needs a <strong>straight OEM replacement</strong> with no interest in a performance upgrade</li>
+        <li>Vehicle is <strong>stock and lightly used</strong> — no towing, no tuning, no heavy work duty cycles</li>
+        <li>Customer is working within a <strong>tight budget</strong> and cost is the primary decision driver</li>
+        <li><strong>Fleet vehicles</strong> that are maintained to a fixed cost-per-unit budget</li>
+        <li>Customer needs the vehicle back on the road <strong>quickly</strong> and a Mishimoto unit is not in stock</li>
+        <li>The vehicle is at or near <strong>end-of-life</strong> and the customer does not want to invest in a premium unit</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-h">When to Upsell to Mishimoto</div>
+      <ul class="bullet-list">
+        <li>Customer <strong>tows regularly</strong> or uses the truck for heavy work duty cycles</li>
+        <li>Vehicle has or will have a <strong>performance tune</strong></li>
+        <li>Customer has experienced <strong>repeated OEM-spec radiator failures</strong></li>
+        <li>Vehicle has <strong>high mileage</strong> and will be kept long-term</li>
+        <li>Customer values a <strong>lifetime warranty</strong> and a buy-once solution</li>
+        <li>Customer is building a <strong>performance or towing-focused</strong> truck</li>
+      </ul>
+      <div class="callout callout-orange" style="margin-top:1.25rem;">
+        <div class="callout-label">💡 Sales Tip</div>
+        <p>When presenting Northern Radiator, always mention the Mishimoto option and explain the value difference. Even if the customer chooses Northern today, planting the seed of an upgrade sets up a future sale — especially once they experience the limitations of an OEM-spec unit under tow load.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<span class="section-anchor" id="intercoolers"></span>
+<section class="section">
+  <div class="section-header reveal">
+    <div class="module-badge">Module 3</div>
+    <div>
+      <div class="section-title">Mishimoto Replacement <span class="accent">Intercoolers</span></div>
+      <p class="section-desc">The charge air cooler is the gateway to power, efficiency, and engine longevity on any turbodiesel platform. Here's why Mishimoto's bar-and-plate design is the upgrade to recommend.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-blue reveal">
+    <div class="callout-label">💡 Customer Education Moment</div>
+    <p>A failing OEM intercooler often presents as reduced power, increased fuel consumption, or black smoke under load. Customers with these symptoms — especially on 6.0L Powerstroke and LLY Duramax platforms — are strong intercooler replacement candidates where failure rates are well-documented.</p>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="sub-h reveal">Bar-and-Plate vs. OEM Tube-and-Fin</div>
+  <div class="reveal" style="overflow-x:auto;">
+    <div class="compare-grid">
+      <div class="compare-header">Characteristic</div>
+      <div class="compare-header">OEM Tube-and-Fin</div>
+      <div class="compare-header orange-header">Mishimoto Bar-and-Plate</div>
+      <div class="compare-cell row-label">Core Strength</div><div class="compare-cell">Lighter, less pressure-resistant</div><div class="compare-cell text-orange">Extremely pressure-resistant</div>
+      <div class="compare-cell row-label">Thermal Efficiency</div><div class="compare-cell">Good at low boost</div><div class="compare-cell text-orange">Superior across all boost ranges</div>
+      <div class="compare-cell row-label">Pressure Rating</div><div class="compare-cell">~25 PSI typical</div><div class="compare-cell text-orange">40–50+ PSI capable</div>
+      <div class="compare-cell row-label">Repairability</div><div class="compare-cell">Difficult — not field-repairable</div><div class="compare-cell text-orange">Can be TIG-welded if damaged</div>
+      <div class="compare-cell row-label">End Tanks</div><div class="compare-cell">Crimped plastic — common failure</div><div class="compare-cell text-orange">Cast & welded aluminum</div>
+      <div class="compare-cell row-label">Longevity</div><div class="compare-cell">5–10 years typical</div><div class="compare-cell text-orange">Lifetime with proper maintenance</div>
+    </div>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="sub-h reveal">Performance Data by Platform</div>
+  <div class="reveal" style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Application</th><th>Engine</th><th>Core Volume Gain</th><th>Temp Reduction</th><th>Boost Rating</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ford 6.7L Powerstroke (2011–19)</td><td>6.7L PS</td><td>+28%</td><td>Up to 30°F</td><td>50+ PSI</td></tr>
+        <tr><td>Ford 6.0L Powerstroke (2003–07)</td><td>6.0L PS</td><td>+31%</td><td>Up to 35°F</td><td>40+ PSI</td></tr>
+        <tr><td>Ford 6.4L Powerstroke (2008–10)</td><td>6.4L PS</td><td>+26%</td><td>Up to 28°F</td><td>45+ PSI</td></tr>
+        <tr><td>GM LB7 / LLY / LBZ Duramax</td><td>6.6L Duramax</td><td>+33%</td><td>Up to 32°F</td><td>40+ PSI</td></tr>
+        <tr><td>GM LML / L5P Duramax</td><td>6.6L Duramax</td><td>+29%</td><td>Up to 30°F</td><td>50+ PSI</td></tr>
+        <tr><td>Ram 5.9L Cummins</td><td>5.9L Cummins</td><td>+35%</td><td>Up to 38°F</td><td>40+ PSI</td></tr>
+        <tr><td>Ram 6.7L Cummins</td><td>6.7L Cummins</td><td>+30%</td><td>Up to 32°F</td><td>50+ PSI</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h">Installation Steps</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">01</div><div class="step-content"><h4>Access</h4><p>Remove front grille or lower fascia as required for intercooler access.</p></div></div>
+        <div class="step"><div class="step-num">02</div><div class="step-content"><h4>Disconnect Pipes</h4><p>Remove charge pipes from both end tanks — label or photograph routing.</p></div></div>
+        <div class="step"><div class="step-num">03</div><div class="step-content"><h4>Remove & Transfer</h4><p>Remove OEM intercooler. Transfer IAT sensor and any MAP tap ports.</p></div></div>
+        <div class="step"><div class="step-num">04</div><div class="step-content"><h4>Mount Mishimoto</h4><p>Position and secure to core support using OEM mounting hardware.</p></div></div>
+        <div class="step"><div class="step-num">05</div><div class="step-content"><h4>Silicone Couplers</h4><p>Install new silicone couplers and T-bolt clamps on all connections.</p></div></div>
+        <div class="step"><div class="step-num">06</div><div class="step-content"><h4>Boost Leak Test</h4><p>Always perform a boost leak test before road use.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="callout callout-amber">
+        <div class="callout-label">🔧 Pro Tip for Staff</div>
+        <p>Always recommend a boost leak test after any intercooler or charge pipe installation. Using regulated shop air and a test plug takes less than 10 minutes and will identify leaking connections before they cause a drivability issue. This protects the customer <strong>and</strong> reduces warranty claims.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 4: CHARGE PIPES -->
+<span class="section-anchor" id="chargepipes"></span>
+<section class="section section-alt">
+  <div class="section-header reveal">
+    <div class="module-badge">Module 4</div>
+    <div>
+      <div class="section-title">AFE Power <span class="accent">Charge Pipe Kits</span></div>
+      <p class="section-desc">The charge pipe system is only as strong as its weakest link. AFE BladeRunner aluminum kits eliminate OEM plastic failure points and improve airflow efficiency across the board.</p>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h">OEM Charge Pipe Weaknesses</div>
+      <ul class="bullet-list">
+        <li>Thin-wall plastic construction prone to cracking at coupler connection points</li>
+        <li>Restrictive bends and smaller ID that limit airflow at higher boost levels</li>
+        <li>Rubber couplers that harden and crack from heat cycling and high EGTs</li>
+        <li>No provision for aftermarket IAT or BOV ports</li>
+        <li><strong>Platform specifics:</strong> Ford 6.7L lower pipe, Ram 6.7L Y-bridge, GM LML boost tube</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-h blue">AFE BladeRunner Aluminum</div>
+      <ul class="bullet-list">
+        <li><strong>6061-T6 aluminum</strong> — 0.080" wall, lightweight, corrosion resistant</li>
+        <li><strong>Mandrel bent</strong> — consistent ID through every bend radius</li>
+        <li><strong>High-temp silicone couplers</strong> — rated to 350°F continuous service</li>
+        <li><strong>Stainless T-bolt clamps</strong> — replaces all OEM spring clamps</li>
+        <li><strong>Pre-tapped sensor bungs</strong> — factory IAT sensor locations included</li>
+        <li><strong>Finish:</strong> Polished or powder-coated black available</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="sub-h reveal">Key Fitments & Part Numbers</div>
+  <div class="reveal" style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Application</th><th>Engine</th><th>Kit Type</th><th>Part Number</th><th>Key Upgrade</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ford 6.7L (2017+)</td><td>6.7L Powerstroke</td><td>BladeRunner Al</td><td>46-20314-B</td><td>Full hot/cold side kit</td></tr>
+        <tr><td>Ford 6.7L (2011–16)</td><td>6.7L Powerstroke</td><td>BladeRunner Al</td><td>46-20144-B</td><td>Full hot/cold side kit</td></tr>
+        <tr><td>GM L5P Duramax (2017–19)</td><td>6.6L Duramax</td><td>BladeRunner Al</td><td>46-20334-B</td><td>Full hot/cold side kit</td></tr>
+        <tr><td>GM LML Duramax (2011–16)</td><td>6.6L Duramax</td><td>BladeRunner Al</td><td>46-20114-B</td><td>Full hot/cold side kit</td></tr>
+        <tr><td>Ram 6.7L Cummins (2013–18)</td><td>6.7L Cummins</td><td>BladeRunner Al</td><td>46-20134-B</td><td>Full hot/cold side kit</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="callout callout-orange reveal">
+    <div class="callout-label">⚠️ Common Installation Mistake</div>
+    <p>On Ford 6.7L applications, the lower charge pipe is the most failure-prone OEM part — but also the most challenging to access. Budget extra time and confirm all CAC boot clamps are fully seated. An improperly seated lower boot is the leading cause of repeat boost leak complaints on this platform.</p>
+  </div>
+</section>
+
+<!-- MODULE 5: SELLING -->
+<span class="section-anchor" id="selling"></span>
+<section class="section">
+  <div class="section-header reveal">
+    <div class="module-badge blue">Module 5</div>
+    <div>
+      <div class="section-title">Selling Strategies & <span class="accent-blue">Customer Conversations</span></div>
+      <p class="section-desc">The DIESEL consultative sales framework, customer signal identification, objection handling, and bundle opportunity guides.</p>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <div class="sub-h">High-Probability Customer Signals</div>
+      <ul class="bullet-list">
+        <li>Mentions <strong>towing, hauling, or regular work truck use</strong> at or near rated capacity</li>
+        <li>References <strong>high mileage (150K+)</strong> on a Powerstroke, Duramax, or Cummins</li>
+        <li>Describes symptoms: <em>"loses power on long pulls," "runs hot in traffic," "white smoke after hard acceleration"</em></li>
+        <li>Already has a <strong>performance tune or is asking about tuning</strong> — upgraded cooling is essential</li>
+        <li>Had a <strong>recent intercooler or radiator failure</strong> — ideal upsell moment</li>
+        <li>Is a <strong>fleet manager or commercial operator</strong> — durability and warranty are decisive</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-h">Bundle Opportunities</div>
+      <div class="reveal" style="overflow-x:auto; margin-bottom:1rem;">
+        <table class="data-table">
+          <thead>
+            <tr><th>Customer Situation</th><th>Primary</th><th>Add-On</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Failed OEM radiator</td><td>Mishimoto Radiator</td><td>Intercooler + AFE Pipes</td></tr>
+            <tr><td>Boost leak / intercooler failure</td><td>Mishimoto Intercooler</td><td>AFE Charge Pipes</td></tr>
+            <tr><td>Buying a tune</td><td>AFE Charge Pipe Kit</td><td>Mishimoto Intercooler + Radiator</td></tr>
+            <tr><td>High mileage (150K+)</td><td>Mishimoto Intercooler</td><td>Radiator + AFE Pipes</td></tr>
+            <tr><td>Commercial fleet</td><td>Mishimoto Radiator</td><td>Bulk pricing discussion</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="sub-h reveal">The DIESEL Consultative Sales Framework</div>
+  <div class="framework reveal">
+    <div class="framework-row">
+      <div class="framework-cell">Step</div>
+      <div class="framework-cell">Action</div>
+      <div class="framework-cell example">Example Language</div>
+    </div>
+    <div class="framework-row">
+      <div class="framework-cell letter">D</div>
+      <div class="framework-cell action">Discover</div>
+      <div class="framework-cell example">"What do you primarily use this truck for? Any towing or work?"</div>
+    </div>
+    <div class="framework-row">
+      <div class="framework-cell letter">I</div>
+      <div class="framework-cell action">Identify Pain</div>
+      <div class="framework-cell example">"Have you noticed any temperature issues under load, or any power loss?"</div>
+    </div>
+    <div class="framework-row">
+      <div class="framework-cell letter">E</div>
+      <div class="framework-cell action">Educate</div>
+      <div class="framework-cell example">"Here's what's actually happening with the OEM intercooler at those temps..."</div>
+    </div>
+    <div class="framework-row">
+      <div class="framework-cell letter">S</div>
+      <div class="framework-cell action">Show Solution</div>
+      <div class="framework-cell example">"Mishimoto's all-aluminum design eliminates that failure point entirely..."</div>
+    </div>
+    <div class="framework-row">
+      <div class="framework-cell letter">E</div>
+      <div class="framework-cell action">Establish Value</div>
+      <div class="framework-cell example">"For the warranty alone this pays for itself — and it installs in under 3 hours."</div>
+    </div>
+    <div class="framework-row">
+      <div class="framework-cell letter">L</div>
+      <div class="framework-cell action">Lead to Decision</div>
+      <div class="framework-cell example">"Based on your setup, I'd recommend the intercooler + charge pipes. Want to look at what that bundle runs?"</div>
+    </div>
+  </div>
+
+  <div class="spacer reveal"></div>
+  <div class="sub-h reveal">Handling Common Objections</div>
+  <div class="reveal">
+    <div class="objection-block">
+      <div class="objection-q">"The OEM part is still working fine — why replace it?"</div>
+      <div class="objection-a">The OEM intercooler was designed for stock power levels and ideal conditions. Most intercooler failures are gradual — customers don't realize they're losing 15–20 horsepower from heat soak until after they upgrade. The question isn't whether the OEM part is working — it's whether it's working <strong>well enough for how this customer actually uses their truck.</strong></div>
+    </div>
+    <div class="objection-block">
+      <div class="objection-q">"That seems expensive for just a pipe/radiator."</div>
+      <div class="objection-a">Compare it to a roadside breakdown from a cracked plastic end tank, or engine repair from sustained heat damage on a long tow. These parts protect a <strong>$40,000–$80,000 vehicle.</strong> The Mishimoto lifetime warranty means this is a buy-once component. Divide the price over the life of the truck — it's a very small number per year.</div>
+    </div>
+    <div class="objection-block">
+      <div class="objection-q">"I just have a stock tune — do I really need this?"</div>
+      <div class="objection-a">Many customers see improvements even on stock tunes, especially on high-mileage trucks where OEM systems have degraded. More importantly, <strong>if they're considering a tune now or in the future, these upgrades need to be in place first.</strong> Tuning without cooling upgrades is where problems start — getting these done now sets them up to tune safely when they're ready.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 6: QUIZ -->
+<span class="section-anchor" id="quiz"></span>
+<section class="quiz-section">
+  <div class="section-header reveal">
+    <div class="module-badge">Module 6</div>
+    <div>
+      <div class="section-title">Knowledge <span class="accent">Assessment</span></div>
+      <p class="section-desc">27 questions covering all modules. A score of 80% or higher (22/27) is required to complete this training program.</p>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div id="quiz-form">
+
+      <div class="quiz-section-header">Section A: Mishimoto Diesel Radiators (Q1–9)</div>
+
+      <!-- Q1 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 1 of 27</div>
+        <div class="question-text">What is the primary structural advantage of Mishimoto's all-aluminum radiator construction over OEM units?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>It weighs less than plastic</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>It eliminates the plastic-to-aluminum crimped joint, which is the most common OEM failure point</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>It improves fuel economy by reducing radiator weight</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>It allows for larger coolant capacity without modifying hose routing</div>
+        </div>
+        <div class="feedback">✓ Correct! The brazed aluminum construction eliminates the crimped plastic-to-aluminum joint — the #1 cause of OEM radiator failure on diesel trucks.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — eliminating the plastic-to-aluminum crimped joint is the primary structural advantage.</div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 2 of 27</div>
+        <div class="question-text">Mishimoto diesel radiators typically offer what percentage of cooling capacity increase over OEM?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>5–10%</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>15–25%</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>35–40%</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>50–60%</div>
+        </div>
+        <div class="feedback">✓ Correct! Mishimoto radiators typically provide 34–40% more cooling capacity depending on the application.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — 35–40% is the typical cooling capacity increase range.</div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 3 of 27</div>
+        <div class="question-text">Which coolant type is generally recommended for 6.7L Powerstroke applications?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Traditional green silicate coolant</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>OAT or HOAT as specified by Ford for the platform</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Any universal coolant product</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Distilled water only for the first 500 miles</div>
+        </div>
+        <div class="feedback">✓ Correct! Always use OAT or HOAT coolant as specified by Ford for 6.7L Powerstroke applications.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — use OAT or HOAT as specified by Ford.</div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 4 of 27</div>
+        <div class="question-text">On which platform is it specifically recommended to replace the lower radiator hose and thermostat during radiator installation?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>6.7L Cummins</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>L5P Duramax</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>6.0L and 6.4L Powerstroke</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>LML Duramax</div>
+        </div>
+        <div class="feedback">✓ Correct! On 6.0L and 6.4L Powerstroke applications, replace the lower hose and thermostat while the radiator is out — these components are easiest to access at this time.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — the 6.0L and 6.4L Powerstroke platforms.</div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 5 of 27</div>
+        <div class="question-text">What is the purpose of "burping" the cooling system after radiator installation?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>To verify the correct coolant mixture ratio</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>To remove trapped air pockets that can cause overheating</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>To pressure test the system for leaks</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>To flush residual OEM coolant from the system</div>
+        </div>
+        <div class="feedback">✓ Correct! Burping removes trapped air pockets — air in the cooling system is a leading cause of overheating after a coolant service.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — burping removes trapped air pockets from the cooling system.</div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 6 of 27</div>
+        <div class="question-text">What does Mishimoto's dual or triple-pass flow design accomplish in a diesel radiator?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Reduces the overall weight of the radiator</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Allows for multiple coolant types to be used simultaneously</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Extends coolant contact time with the core for maximum heat rejection</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Increases coolant flow rate to reduce pressure drops</div>
+        </div>
+        <div class="feedback">✓ Correct! Multi-pass flow design increases the amount of time coolant spends in contact with the core, maximizing heat transfer.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — multi-pass design extends coolant dwell time in the core for maximum heat rejection.</div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 7 of 27</div>
+        <div class="question-text">What is the typical coolant temperature reduction customers can expect when towing with a Mishimoto diesel radiator?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>2–5°F</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>15–25°F</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>40–50°F</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>5–10°F</div>
+        </div>
+        <div class="feedback">✓ Correct! Customers typically see 15–25°F reductions in coolant temp under tow load with a Mishimoto radiator installed.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — 15–25°F is the typical reduction under tow load.</div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 8 of 27</div>
+        <div class="question-text">True or False: Mishimoto diesel radiators require cutting or drilling of the factory core support for installation.</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>True — minor modification is required on some applications</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>False — they are direct-fit using OEM mounting points</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>True — a support bracket must be trimmed on Duramax applications</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>False — but they require an adapter bracket kit sold separately</div>
+        </div>
+        <div class="feedback">✓ Correct! Mishimoto diesel radiators are true direct-fit units. No cutting, drilling, or modification of the factory core support is required.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — Mishimoto radiators are direct-fit with no modification needed.</div>
+      </div>
+
+
+      <!-- Q10 -->
+      <div class="question-block reveal" data-correct="3">
+        <div class="question-num">Question 9 of 27</div>
+        <div class="question-text">What warranty does Mishimoto offer on their diesel cooling products?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>1-year limited warranty</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>3-year/36,000 mile warranty</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>5-year warranty with registration</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Lifetime warranty</div>
+        </div>
+        <div class="feedback">✓ Correct! Mishimoto offers a lifetime warranty on their diesel cooling products — one of the strongest in the industry.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is D — Mishimoto offers a lifetime warranty.</div>
+      </div>
+
+      <div class="quiz-section-header">Section B: Mishimoto Intercoolers (Q10–17)</div>
+
+      <!-- Q11 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 10 of 27</div>
+        <div class="question-text">What does the acronym CAC stand for in the context of diesel engine systems?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Compressed Air Chamber</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Charge Air Cooler</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Coolant Activated Circuit</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Cold Air Controller</div>
+        </div>
+        <div class="feedback">✓ Correct! CAC stands for Charge Air Cooler — another term for the intercooler in turbodiesel systems.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — Charge Air Cooler.</div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 11 of 27</div>
+        <div class="question-text">What core design does Mishimoto use for replacement intercoolers, and what is its key advantage?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Tube-and-fin — lighter and cheaper to produce</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Bar-and-plate — superior pressure resistance and thermal efficiency</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Spiral-wound aluminum — maximum airflow velocity</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Crossflow matrix — matches OEM boost routing</div>
+        </div>
+        <div class="feedback">✓ Correct! Bar-and-plate construction offers superior pressure resistance, thermal efficiency, and durability compared to OEM tube-and-fin designs.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — Mishimoto uses bar-and-plate construction for superior pressure resistance and thermal efficiency.</div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 12 of 27</div>
+        <div class="question-text">Approximately how much larger are Mishimoto intercooler cores compared to OEM units?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>5–10% larger</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>10–15% larger</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>20–35% larger</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>50–60% larger</div>
+        </div>
+        <div class="feedback">✓ Correct! Mishimoto intercooler cores are typically 20–35% larger in overall volume than OEM units, providing more surface area for heat transfer.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — 20–35% larger than OEM.</div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 13 of 27</div>
+        <div class="question-text">What common symptom should prompt you to recommend an intercooler upgrade?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Increased fuel economy</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Reduced power, higher fuel consumption, or black smoke under load</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Excessive coolant consumption</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Transmission slipping under load</div>
+        </div>
+        <div class="feedback">✓ Correct! Reduced power, increased fuel consumption, and black smoke under load are classic signs of a failing or inadequate intercooler.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — reduced power, higher fuel consumption, or black smoke under load are the key intercooler failure symptoms.</div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 14 of 27</div>
+        <div class="question-text">What hardware upgrade is typically included with Mishimoto intercooler kits to replace OEM rubber coupler boots?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>OEM-spec rubber replacements with new spring clamps</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>High-temp silicone couplers and stainless T-bolt clamps</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Neoprene couplers with self-tightening worm clamps</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>No coupler hardware — customer sources separately</div>
+        </div>
+        <div class="feedback">✓ Correct! High-temp silicone couplers and stainless T-bolt clamps are included with most Mishimoto intercooler packages.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — high-temp silicone couplers and stainless T-bolt clamps.</div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 15 of 27</div>
+        <div class="question-text">Which diesel platform is specifically noted as having a well-documented intercooler failure rate?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>6.7L Cummins and LML Duramax</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>6.0L Powerstroke and LLY Duramax</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>6.4L Powerstroke and LBZ Duramax</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>6.7L Powerstroke and L5P Duramax</div>
+        </div>
+        <div class="feedback">✓ Correct! The 6.0L Powerstroke and LLY Duramax are well-documented for intercooler failures — making them prime upgrade candidates.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — the 6.0L Powerstroke and LLY Duramax are the most documented for intercooler failures.</div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 16 of 27</div>
+        <div class="question-text">What test should always be performed after any intercooler or charge pipe installation?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Coolant pressure test</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Compression test</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Boost leak test</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Fuel system pressure test</div>
+        </div>
+        <div class="feedback">✓ Correct! A boost leak test using regulated shop air is mandatory after any intercooler or charge pipe installation.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — always perform a boost leak test after intercooler or charge pipe work.</div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 17 of 27</div>
+        <div class="question-text">What approximate charge air temperature reduction can a 5.9L Cummins customer expect from a Mishimoto intercooler upgrade?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Up to 15°F</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Up to 22°F</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Up to 38°F</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Up to 50°F</div>
+        </div>
+        <div class="feedback">✓ Correct! The 5.9L Cummins application achieves up to 38°F charge air temperature reduction — the best in the lineup.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — up to 38°F for the 5.9L Cummins application.</div>
+      </div>
+
+      <div class="quiz-section-header">Section C: AFE Power Charge Pipes (Q18–23)</div>
+
+      <!-- Q19 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 18 of 27</div>
+        <div class="question-text">What material are AFE BladeRunner charge pipe kits made from?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>304 stainless steel</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>6061-T6 aircraft-grade aluminum</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>High-density polyethylene</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Cast magnesium alloy</div>
+        </div>
+        <div class="feedback">✓ Correct! BladeRunner kits use 6061-T6 aircraft-grade aluminum — lightweight, corrosion resistant, with excellent thermal properties.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — 6061-T6 aircraft-grade aluminum.</div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 19 of 27</div>
+        <div class="question-text">What manufacturing method does AFE use to maintain consistent inner diameter through bends?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Die-casting</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Extrusion molding</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Mandrel bending</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Hydroforming</div>
+        </div>
+        <div class="feedback">✓ Correct! Mandrel bending maintains consistent inner diameter through every bend, preventing airflow restriction at bend points.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — mandrel bending maintains consistent ID through all bends.</div>
+      </div>
+
+      <!-- Q21 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 20 of 27</div>
+        <div class="question-text">What type of clamp is included with AFE charge pipe kits to replace OEM spring clamps?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Worm-drive stainless clamps</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>OEM-style spring clamps</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Heavy-duty stainless T-bolt clamps</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Snap-ring style retaining clamps</div>
+        </div>
+        <div class="feedback">✓ Correct! Heavy-duty stainless T-bolt clamps are included with all AFE charge pipe kits — far superior to OEM spring clamps.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — heavy-duty stainless T-bolt clamps.</div>
+      </div>
+
+
+      <!-- Q23 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 21 of 27</div>
+        <div class="question-text">What is the correct T-bolt clamp torque specification for most AFE charge pipe installations?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>15–20 in-lbs</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>25–30 in-lbs</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>40–50 in-lbs</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>60–80 in-lbs</div>
+        </div>
+        <div class="feedback">✓ Correct! 40–50 in-lbs is the standard T-bolt clamp torque spec for AFE charge pipe installations.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — 40–50 in-lbs for T-bolt clamps on AFE charge pipe kits.</div>
+      </div>
+
+      <!-- Q24 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 22 of 27</div>
+        <div class="question-text">On which platform is the lower charge pipe specifically called out as the most failure-prone OEM component?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Ram 6.7L Cummins</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Ford 6.7L Powerstroke</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>GM LML Duramax</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Ford 6.0L Powerstroke</div>
+        </div>
+        <div class="feedback">✓ Correct! The Ford 6.7L Powerstroke lower charge pipe is the most documented OEM charge pipe failure — and the most challenging to access during replacement.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — the Ford 6.7L Powerstroke lower charge pipe.</div>
+      </div>
+
+      <!-- Q25 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 23 of 27</div>
+        <div class="question-text">What does AFE pre-tap into their charge pipes at factory IAT sensor locations?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Boost port fittings</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Sensor bungs</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Blow-off valve ports</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Wastegate lines</div>
+        </div>
+        <div class="feedback">✓ Correct! AFE pre-taps sensor bungs at factory IAT sensor locations — so existing sensors transfer directly with no modification needed.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — sensor bungs for factory IAT sensor compatibility.</div>
+      </div>
+
+
+      <div class="quiz-section-header">Section D: Selling Strategies (Q24–27)</div>
+
+      <!-- Q27 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 24 of 27</div>
+        <div class="question-text">A customer says their stock truck "works fine" — what's the best response when recommending a Mishimoto intercooler?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Tell them the product is not necessary for stock vehicles</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Explain that OEM intercoolers degrade over time — high-mileage trucks are often losing performance without realizing it</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Offer a discount to incentivize the purchase regardless of need</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Recommend they tune the truck first and come back for cooling upgrades</div>
+        </div>
+        <div class="feedback">✓ Correct! OEM intercoolers degrade gradually — customers often don't realize they're losing performance until after they install the upgrade. Education is the key.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — explain the gradual nature of OEM intercooler degradation, especially on high-mileage trucks.</div>
+      </div>
+
+      <!-- Q28 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 25 of 27</div>
+        <div class="question-text">In the DIESEL sales framework, what does the 'E' (Educate) step involve?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Explaining the price breakdown to the customer</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Asking the customer about their use case</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Explaining the underlying technical problem the product solves</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Introducing the product's features and specifications</div>
+        </div>
+        <div class="feedback">✓ Correct! The Educate step is about helping the customer understand the root cause of the problem — which makes the solution feel necessary, not like a sales pitch.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — educate means explaining the underlying technical problem the product solves.</div>
+      </div>
+
+      <!-- Q29 -->
+      <div class="question-block reveal" data-correct="2">
+        <div class="question-num">Question 26 of 27</div>
+        <div class="question-text">What is the ideal bundle recommendation for a customer purchasing a performance tune?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Just the tune — additional products can wait</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>AFE charge pipe kit only</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>AFE charge pipe kit + Mishimoto intercooler + Mishimoto radiator</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Radiator only — the most critical for tuned engines</div>
+        </div>
+        <div class="feedback">✓ Correct! A complete cooling and induction upgrade — charge pipes, intercooler, and radiator — should be in place before or alongside a performance tune.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is C — AFE charge pipe kit + Mishimoto intercooler + Mishimoto radiator is the complete bundle for a tuned build.</div>
+      </div>
+
+      <!-- Q30 -->
+      <div class="question-block reveal" data-correct="1">
+        <div class="question-num">Question 27 of 27</div>
+        <div class="question-text">What is the strongest response to the objection: "That seems expensive for a radiator"?</div>
+        <div class="options">
+          <div class="option" data-index="0"><span class="option-letter">A</span>Agree and offer a lower-quality alternative</div>
+          <div class="option" data-index="1"><span class="option-letter">B</span>Compare the cost to a roadside breakdown or engine damage, and highlight the lifetime warranty over the life of the vehicle</div>
+          <div class="option" data-index="2"><span class="option-letter">C</span>Offer an immediate discount to close the sale</div>
+          <div class="option" data-index="3"><span class="option-letter">D</span>Suggest they use OEM if budget is a concern</div>
+        </div>
+        <div class="feedback">✓ Correct! Reframing the cost against the risk of breakdown, engine damage, and the lifetime warranty value is the most effective response to this objection.</div>
+        <div class="feedback">✗ Incorrect. The correct answer is B — frame the cost against the much higher cost of a breakdown or engine repair, and emphasize the lifetime warranty.</div>
+      </div>
+
+      <button class="submit-btn" id="submit-btn" onclick="submitQuiz()">Submit Assessment</button>
+
+      <div class="score-display" id="score-display">
+        <div class="score-number" id="score-number"></div>
+        <div class="score-label" id="score-label"></div>
+        <div class="score-verdict" id="score-verdict"></div>
+        <p style="color:var(--steel);font-size:0.9rem;margin-top:1rem;" id="score-detail"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPENDIX -->
+<span class="section-anchor" id="appendix"></span>
+<section class="quick-ref">
+  <div class="section-header reveal">
+    <div class="module-badge blue">Appendix</div>
+    <div>
+      <div class="section-title">Quick <span class="accent-blue">Reference</span></div>
+      <p class="section-desc">Spec charts, product comparison summary, and tech support contacts for daily use on the sales floor.</p>
+    </div>
+  </div>
+
+  <div class="sub-h reveal">Mishimoto Radiator Quick Reference</div>
+  <div class="reveal" style="overflow-x:auto;margin-bottom:2rem;">
+    <table class="data-table">
+      <thead><tr><th>Platform</th><th>Years</th><th>Engine</th><th>Cooling Gain</th><th>Construction</th></tr></thead>
+      <tbody>
+        <tr><td>Ford Super Duty</td><td>2017+</td><td>6.7L Powerstroke</td><td>+38%</td><td>All-aluminum, brazed</td></tr>
+        <tr><td>Ford Super Duty</td><td>2011–16</td><td>6.7L Powerstroke</td><td>+35%</td><td>All-aluminum, brazed</td></tr>
+        <tr><td>Ford Super Duty</td><td>2008–10</td><td>6.4L Powerstroke</td><td>+34%</td><td>All-aluminum, brazed</td></tr>
+        <tr><td>Ford Super Duty</td><td>2003–07</td><td>6.0L Powerstroke</td><td>+35%</td><td>All-aluminum, brazed</td></tr>
+        <tr><td>Chevy/GMC</td><td>2017–19</td><td>6.6L L5P Duramax</td><td>+40%</td><td>All-aluminum, brazed</td></tr>
+        <tr><td>Chevy/GMC</td><td>2011–16</td><td>6.6L LML Duramax</td><td>+36%</td><td>All-aluminum, brazed</td></tr>
+        <tr><td>Ram</td><td>2019+</td><td>6.7L Cummins</td><td>+39%</td><td>All-aluminum, brazed</td></tr>
+        <tr><td>Ram</td><td>2013–18</td><td>6.7L Cummins</td><td>+37%</td><td>All-aluminum, brazed</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-h reveal">Mishimoto Intercooler Quick Reference</div>
+  <div class="reveal" style="overflow-x:auto;margin-bottom:2rem;">
+    <table class="data-table">
+      <thead><tr><th>Platform</th><th>Engine</th><th>Volume Gain</th><th>Temp Reduction</th><th>Boost Rating</th></tr></thead>
+      <tbody>
+        <tr><td>Ford 6.7L Powerstroke (2011–19)</td><td>6.7L PS</td><td>+28%</td><td>Up to 30°F</td><td>50+ PSI</td></tr>
+        <tr><td>Ford 6.0L Powerstroke (2003–07)</td><td>6.0L PS</td><td>+31%</td><td>Up to 35°F</td><td>40+ PSI</td></tr>
+        <tr><td>Ford 6.4L Powerstroke (2008–10)</td><td>6.4L PS</td><td>+26%</td><td>Up to 28°F</td><td>45+ PSI</td></tr>
+        <tr><td>GM LB7 / LLY / LBZ Duramax</td><td>6.6L Duramax</td><td>+33%</td><td>Up to 32°F</td><td>40+ PSI</td></tr>
+        <tr><td>GM LML / L5P Duramax</td><td>6.6L Duramax</td><td>+29%</td><td>Up to 30°F</td><td>50+ PSI</td></tr>
+        <tr><td>Ram 5.9L Cummins</td><td>5.9L Cummins</td><td>+35%</td><td>Up to 38°F</td><td>40+ PSI</td></tr>
+        <tr><td>Ram 6.7L Cummins</td><td>6.7L Cummins</td><td>+30%</td><td>Up to 32°F</td><td>50+ PSI</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-h reveal">AFE Power Charge Pipe Quick Reference</div>
+  <div class="reveal" style="overflow-x:auto;margin-bottom:2rem;">
+    <table class="data-table">
+      <thead><tr><th>Platform</th><th>Engine</th><th>Kit Type</th><th>Part Number</th><th>Key Components</th></tr></thead>
+      <tbody>
+        <tr><td>Ford 6.7L (2017+)</td><td>6.7L PS</td><td>BladeRunner Al</td><td>46-20314-B</td><td>Full hot/cold side</td></tr>
+        <tr><td>Ford 6.7L (2011–16)</td><td>6.7L PS</td><td>BladeRunner Al</td><td>46-20144-B</td><td>Full hot/cold side</td></tr>
+        <tr><td>GM L5P (2017–19)</td><td>6.6L Duramax</td><td>BladeRunner Al</td><td>46-20334-B</td><td>Full hot/cold side</td></tr>
+        <tr><td>GM LML (2011–16)</td><td>6.6L Duramax</td><td>BladeRunner Al</td><td>46-20114-B</td><td>Full hot/cold side</td></tr>
+        <tr><td>Ram 6.7L (2013–18)</td><td>6.7L Cummins</td><td>BladeRunner Al</td><td>46-20134-B</td><td>Full hot/cold side</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-h reveal">Product Comparison Summary</div>
+  <div class="reveal" style="overflow-x:auto;margin-bottom:2rem;">
+    <div class="compare-grid" style="grid-template-columns: 1.5fr 1fr 1fr 1fr;">
+      <div class="compare-header">Feature</div>
+      <div class="compare-header">Mishimoto Radiator</div>
+      <div class="compare-header">Mishimoto Intercooler</div>
+      <div class="compare-header orange-header">AFE Charge Pipes</div>
+      <div class="compare-cell row-label">Primary Material</div><div class="compare-cell">6061 aluminum</div><div class="compare-cell">6061 bar-and-plate</div><div class="compare-cell text-orange">6061-T6 aluminum</div>
+      <div class="compare-cell row-label">Construction</div><div class="compare-cell">Brazed core + welded tanks</div><div class="compare-cell">Brazed bar-and-plate</div><div class="compare-cell text-orange">Mandrel bent + TIG welded</div>
+      <div class="compare-cell row-label">Install Time</div><div class="compare-cell">2–4 hours</div><div class="compare-cell">2–4 hours</div><div class="compare-cell text-orange">1–3 hours</div>
+      <div class="compare-cell row-label">Warranty</div><div class="compare-cell">Lifetime</div><div class="compare-cell">Lifetime</div><div class="compare-cell">Limited — see AFE site</div>
+      <div class="compare-cell row-label">Key Benefit</div><div class="compare-cell">No plastic failure, lower coolant temp</div><div class="compare-cell">Cooler, denser charge air</div><div class="compare-cell text-orange">No boost leaks, better flow</div>
+    </div>
+  </div>
+
+  <div class="callout callout-blue reveal">
+    <div class="callout-label">📞 Tech Support Contacts</div>
+    <p><strong style="color:var(--white)">Mishimoto:</strong> 1-855-642-7467 | support@mishimoto.com | mishimoto.com<br>
+    <strong style="color:var(--white)">AFE Power:</strong> 1-951-340-2400 | tech@afepower.com | afepower.com<br><br>
+    Always verify current part numbers and fitment in the current model-year catalog before confirming a sale.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Performance Cooling & Induction Training Program — Version 1.0 | May 2026 | Confidential — Internal Use Only</p>
+  <div class="footer-brands">
+    <span class="footer-brand">Mishimoto</span>
+    <span class="footer-brand">·</span>
+    <span class="footer-brand">Northern Radiator</span>
+    <span class="footer-brand">·</span>
+    <span class="footer-brand">AFE Power</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav progress
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = Math.round(pct) + '% complete';
+
+    // Active nav
+    const sections = ['intro','radiators','northern','intercoolers','chargepipes','selling','quiz','appendix'];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const link = document.querySelector(`.nav-pills a[href="#${id}"]`);
+      if (!link) return;
+      const top = el.getBoundingClientRect().top;
+      if (top <= 80) {
+        document.querySelectorAll('.nav-pills a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Quiz logic
+  let userAnswers = {};
+
+  document.querySelectorAll('.question-block').forEach((block, qi) => {
+    const options = block.querySelectorAll('.option');
+    options.forEach((opt, oi) => {
+      opt.addEventListener('click', () => {
+        if (block.classList.contains('answered-correct') || block.classList.contains('answered-wrong')) return;
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        userAnswers[qi] = oi;
+      });
+    });
+  });
+
+  function submitQuiz() {
+    const blocks = document.querySelectorAll('.question-block');
+    const unanswered = [];
+    blocks.forEach((b, i) => { if (userAnswers[i] === undefined) unanswered.push(i + 1); });
+
+    if (unanswered.length > 0) {
+      alert(`Please answer all questions before submitting.\n\nUnanswered: Q${unanswered.slice(0,5).join(', Q')}${unanswered.length > 5 ? '...' : ''}`);
+      return;
+    }
+
+    let score = 0;
+    blocks.forEach((block, qi) => {
+      const correct = parseInt(block.dataset.correct);
+      const chosen = userAnswers[qi];
+      const options = block.querySelectorAll('.option');
+      const feedbacks = block.querySelectorAll('.feedback');
+
+      options.forEach((o, oi) => {
+        if (oi === correct) o.classList.add('correct');
+        else if (oi === chosen && oi !== correct) o.classList.add('wrong');
+      });
+
+      // Hide both feedbacks first, then reveal the right one
+      feedbacks[0].classList.remove('correct', 'wrong');
+      feedbacks[1].classList.remove('correct', 'wrong');
+      if (chosen === correct) {
+        score++;
+        block.classList.add('answered-correct');
+        feedbacks[0].classList.add('correct');
+      } else {
+        block.classList.add('answered-wrong');
+        feedbacks[1].classList.add('wrong');
+      }
+    });
+
+    const pct = Math.round((score / 27) * 100);
+    const passed = score >= 22;
+    const display = document.getElementById('score-display');
+    const numEl = document.getElementById('score-number');
+    const labelEl = document.getElementById('score-label');
+    const verdictEl = document.getElementById('score-verdict');
+    const detailEl = document.getElementById('score-detail');
+
+    numEl.textContent = score + '/27';
+    numEl.className = 'score-number ' + (passed ? 'pass' : 'fail');
+    labelEl.textContent = pct + '% — ' + (passed ? 'Pass threshold met (80% = 22/27)' : 'Below pass threshold (22/27 required)');
+    verdictEl.textContent = passed ? '✓ Training Complete' : '✗ Retake Required';
+    verdictEl.className = 'score-verdict ' + (passed ? 'pass' : 'fail');
+    detailEl.textContent = passed
+      ? 'Congratulations! You have successfully completed the Mishimoto & AFE Power Product Training Program.'
+      : `You need ${22 - score} more correct answer${22 - score > 1 ? 's' : ''} to pass. Review the modules above and retake the assessment.`;
+
+    display.classList.add('show');
+    display.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    document.getElementById('submit-btn').disabled = true;
+  }
+</script>
+</body>
+</html>
